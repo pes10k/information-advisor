@@ -1,0 +1,8 @@
+.editable {
+    /*height: 10em;*/
+}
+
+.ppi-marker {
+    color: orange;
+    border-bottom: 2px dashed red;
+}
