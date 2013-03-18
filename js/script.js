@@ -41,23 +41,40 @@
                 this.setData(clean_html, function () {
 
                     var ppi_title, ppi_type,
-                        ppi_instance_index, ppi_instance;
+                        ppi_instance_index, ppi_instance,
+                        response = "",
+                        ppi_listing;
 
                     if (found_ppi) {
 
+                        ppi_listing = "<ul>";
+
                         for (ppi_title in found_ppi) {
                             ppi_type = found_ppi[ppi_title];
+
+                            ppi_listing += "<li><strong>" + ppi_title + "</strong><ul>";
+
                             for (ppi_instance_index in ppi_type) {
                                 ppi_instance = ppi_type[ppi_instance_index];
                                 clean_html = add_ppi_marker(clean_html, ppi_instance);
+
+                                ppi_listing += "<li>" + ppi_instance + "</li>";
                             }
+
+                            ppi_listing += "</ul></li>";
                         }
 
+                        ppi_listing += "</ul>";
+
                         this.setData(clean_html);
-                        $container.popover({
+
+                        response = "<p>You may have included personally indentifiying information in your response that could reveal your identifiy. You may want to revise your response before submitting this response.</p>";
+
+                        $container.popover('destroy').popover({
                             placement: "top",
-                            title: "Warning",
-                            content: "You revealed all kinds of private stuff"
+                            title: "<strong>Warning</strong>: Potentially Sensitive Information Found!",
+                            content: response + ppi_listing,
+                            html: true
                         }).popover('show');
 
                     } else {
