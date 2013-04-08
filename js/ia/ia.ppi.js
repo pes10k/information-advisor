@@ -61,18 +61,18 @@ if ('ppi' in window.ia === false) {
 
     ppi.collection.push(PpiCheck("Year", (function () {
 
-        var year_regex = /\D?(\d{4})\D?/g;
+        var year_regex = /(\d{4})/g;
 
         return function (value) {
 
             var regex_match,
-                regex_matches = [];
+                regex_matches = [],
+                year;
 
             while (regex_match = year_regex.exec(value)) {
 
-                // Only accept year matches that have a non-digit before or
-                // after the year.
-                if (regex_match[0].length !== 4) {
+                year = regex_match[0];
+                if (year.length === 4 && year > 1900 && year < 2010) {
                     regex_matches.push(regex_match[1]);
                 }
             }

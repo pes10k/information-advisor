@@ -14,43 +14,86 @@
         </script>
     </head>
     <body>
-        <section class="container">
+        <header class="container">
             <div class="row">
-                <div class="span12">
-                    <h1>Identification Advisor – Demo</h1>
+                <div class="span8 offset2">
+                    <div class="page-header">
+                        <h1>Identification Advisor <small>An IGERT-ESP Adventure</small></h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="container" id="intro-section">
+            <div class="row">
+                <div class="span8 offset2">
+                    <p>Thank you for agreeing to participate in our survey.  As part of an examination of teaching best practices we are interested in hearing about a past negative experience you may have had with a teacher.  The responses you provide will be used to help identify possible areas of improvement in educational curriculum.  Excerpts of the responses you provide might be used as examples in our final report.</p>
+
+                    <p>All of your responses are voluntary and you can opt to cancel your participation in the survey at any time by leaving the web page.</p>
+
+                    <p>If you are over the age of 18 and wish to continue please click "<strong>Begin Survey</strong>."</p>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span8 offset2">
+                    <div class="form-actions">
+                        <button class="btn btn-primary pull-right" id="begin-survey">Begin Survey</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="container">
+        <section class="container" style="display: none;" id="survey-section">
+
             <div class="row">
-                <div class="span12">
+                <div class="span8 offset2">
+                    <p>In an effort to generate initial content for our new site we would like for you to answer the following questions:</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span8 offset2">
 
                     <div class="questions-form">
                         <div data-question-sequence="1" class="well question">
                             <label for="question_1">Question 1</label>
-                            <p>Here is some helpful question text for the first question.</p>
+                            <p>Please describe a negative experience you had with a teacher / professor.</p>
                             <textarea name="question_1" id="question_1" class="input-block-level"></textarea>
                         </div>
 
                         <div data-question-sequence="2" class="well question" style="display: none;">
                             <label for="question_2">Question 2</label>
-                            <p>Here is some helpful question text for the second question.</p>
+                            <p>When did this negative experience occur?</p>
                             <textarea name="question_2" id="question_2" class="input-block-level"></textarea>
                         </div>
 
                         <div data-question-sequence="3" class="well question" style="display: none;">
                             <label for="question_3">Question 3</label>
-                            <p>Here is some helpful question text for the third question.</p>
+                            <p>Please describe where this experience occured?</p>
                             <textarea name="question_3" id="question_3" class="input-block-level"></textarea>
                         </div>
+
+                        <div data-question-sequence="4" class="well question" style="display: none;">
+                            <label for="question_4">Question 4</label>
+                            <p>Please describe the context within which you had this experience. What led you and the teacher / professor to be in the situation in the first place?</p>
+                            <textarea name="question_4" id="question_4" class="input-block-level"></textarea>
+                        </div>
+
+                        <div data-question-sequence="5" class="well question" style="display: none;">
+                            <label for="question_5">Question 5</label>
+                            <p>Please provide a recommendation for how the problem could have been better resolved or corrected?</p>
+                            <textarea name="question_5" id="question_5" class="input-block-level"></textarea>
+                        </div>
+
                     </div>
 
                 </div>
             </div>
 
             <div class="row">
-                <div class="span12">
+                <div class="span8 offset2">
                     <div class="form-actions">
                         <button class="btn btn-primary pull-right btn-next">Submit Response</button>
                     </div>

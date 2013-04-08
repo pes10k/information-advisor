@@ -1,8 +1,14 @@
-.editable {
-    /*height: 10em;*/
-}
-
 .ppi-marker {
     color: orange;
     border-bottom: 2px dashed red;
+}
+
+header {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.ident-measure {
+    font-size: 140%;
+    text-align: center;
 }

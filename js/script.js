@@ -5,6 +5,14 @@
 
         var debug = IA.debug,
             html = window.pes.html,
+
+            // Elements used for handling the into text and initial
+            // user agreement
+            $survey_section = $("#survey-section"),
+            $intro_section = $("#intro-section"),
+            $being_survey_button = $("#begin-survey"),
+
+            // Elements used for prompting users for questions
             form = new IA.QuestionsForm(
                 $(".questions-form"),
                 $.map($(".question"), function (elm) {
@@ -48,22 +56,42 @@
 
                 var ppi = ppi_in_current_question(),
                     ppi_count = count_ppi_in_current_question(),
-                    rating = 100,
+                    rating = ppi_count ? (1000000 / Math.pow(10, ppi_count)) : false,
+                    body;
+
+                // If there is identifiable PPI, then prompt the user and allow
+                // them to edit their response accordinly
+                if (rating) {
+
                     body = (html.p("There is potentially personally identifiying information in your response.") +
-                            html.p("You may want to edit your response to remove potentially identifiying details to better preserve your anonymity.") +
-                            html.div("We estimate that your current response makes you identifiable <strong>1 out of " + rating + "</strong> people."));
+                        html.p("You may want to edit your response to remove potentially identifiying details to better preserve your anonymity.") +
+                        html.div("We estimate that your current response makes you identifiable") +
+                        html.div("1 out of " + rating + " people.", {"class": "well ident-measure"}));
 
-                if (debug) {
-                    debug.add_ppi(ppi);
+                    if (debug) {
+                        debug.add_ppi(ppi);
+                    }
+
+                    $modal.body.html($(body));
+                    $modal.label.text("Information");
+                    $modal.modal('show');
+
+                // Otherwise, just move them to the next dang question already
+                } else {
+
+                    answer_accepted();
                 }
-
-                $modal.body.html($(body));
-                $modal.label.text("Information");
-                $modal.modal('show');
             };
 
         $modal.body = $modal.find(".modal-body");
         $modal.label = $modal.find("#modal-label");
+
+        $being_survey_button.click(function () {
+            $intro_section.fadeOut(function () {
+                $survey_section.fadeIn();
+            });
+        });
+
         $modal.edit_button = $modal.find(".btn-edit").click(function () {
             $modal.modal('hide');
             return false;
@@ -75,7 +103,6 @@
         });
 
         $next_button.click(function () {
-
             prompt_user();
         });
     });
