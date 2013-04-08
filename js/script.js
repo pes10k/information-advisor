@@ -83,7 +83,7 @@
                         html.div("1 out of " + rating + " people.", {"class": "well ident-measure"}));
 
                     if (debug) {
-                        debug.add_ppi(ppi);
+                        debug.add_item(responses[responses.length - 1]);
                     }
 
                     $modal.body.html($(body));

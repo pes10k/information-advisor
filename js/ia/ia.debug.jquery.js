@@ -14,23 +14,36 @@
                 .find('.debug-area');
 
     IA.debug = {
-        add_ppi: function (ppi_collection) {
+        serialize: function (item) {
 
-            var label,
-                item,
-                html = '<h4>' + (new Date()) + '</h4><ul>';
+            var key,
+                text = "",
+                elements = [];
 
-            for (label in ppi_collection) {
-                html += "<li><h5>" + label + "</h5><ul>";
-
-                for (item in ppi_collection[label]) {
-                    html += "<li>" + ppi_collection[label][item] + "</li>\n";
-                }
-
-                html += "</ul></li>";
+            for (key in item) {
+                elements.push("'" + key + "' = '" + item[key] + "'");
             }
 
-            html += "</ul><hr />";
+            return elements.join(",");
+
+        },
+        add_item: function (item) {
+
+            var key,
+                value,
+                html = "<hr /><dl>";
+
+            for (key in item) {
+
+                html += "<dt>" + key + "</dt>";
+                if (item[key] instanceof Object) {
+                    html += "<dd>" + this.serialize(item[key]) + "</dd>";
+                } else {
+                    html += "<dd>" + item[key] + "</dd>";
+                }
+            }
+
+            html += "</dl>";
             $debug_area.prepend(html);
         }
     };
