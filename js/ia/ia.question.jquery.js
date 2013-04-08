@@ -5,7 +5,12 @@
 
         var $label = $elm.find("label"),
             $textarea = $elm.find("textarea"),
-            $sequence_num = $elm.attr("data-question-sequence");
+            $sequence_num = $elm.attr("data-question-sequence"),
+            id = $elm.attr("data-question-sequence");
+
+        this.id = function () {
+            return id;
+        };
 
         this.fadeIn = function (callback) {
             $elm.fadeIn(callback);

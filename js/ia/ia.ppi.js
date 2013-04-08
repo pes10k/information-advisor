@@ -84,7 +84,7 @@ if ('ppi' in window.ia === false) {
     ppi.collection.push(PpiCheck("Cities", data_checker_gen(data.cities)));
     ppi.collection.push(PpiCheck("States", data_checker_gen(data.states)));
     ppi.collection.push(PpiCheck("Majors and Minors", data_checker_gen(data.majors)));
-    ppi.collection.push(PpiCheck("Gender", data_checker_gen(['male', 'female', 'transgenered'])));
+    ppi.collection.push(PpiCheck("Gender", data_checker_gen(['male', 'female', 'transgendered'])));
 
     ppi.collection.push(PpiCheck("GPA", (function () {
 

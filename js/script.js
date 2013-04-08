@@ -5,6 +5,7 @@
 
         var debug = IA.debug,
             html = window.pes.html,
+            responses = [],
 
             // Elements used for handling the into text and initial
             // user agreement
@@ -56,8 +57,21 @@
 
                 var ppi = ppi_in_current_question(),
                     ppi_count = count_ppi_in_current_question(),
+                    ppi_serialized = {},
                     rating = ppi_count ? (1000000 / Math.pow(10, ppi_count)) : false,
-                    body;
+                    body,
+                    key;
+
+                for (key in ppi) {
+                    ppi_serialized[key] = ppi[key].length;
+                }
+
+                responses.push({
+                    question: form.currentQuestion().id(),
+                    rating: rating ? "1 in " + rating : "none",
+                    ppi_counts: ppi_serialized,
+                    time: Date.now()
+                });
 
                 // If there is identifiable PPI, then prompt the user and allow
                 // them to edit their response accordinly
