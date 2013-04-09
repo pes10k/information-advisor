@@ -12,6 +12,23 @@ if ('ppi' in window.ia === false) {
                 }
             };
         },
+        regex_rule_gen = function (a_regex) {
+
+            return function (value) {
+
+                var regex_match,
+                    regex_matches = [];
+
+                while (regex_match = a_regex.exec(value)) {
+
+                    if (regex_match[1]) {
+                        regex_matches.push(regex_match[1]);
+                    }
+                }
+
+                return regex_matches;
+            };
+        },
         data_checker_gen = function (data_set) {
 
             var i, escape_index,
@@ -112,26 +129,11 @@ if ('ppi' in window.ia === false) {
         };
     }())));
 
-    ppi.collection.push(PpiCheck("Class Number", (function () {
+    ppi.collection.push(PpiCheck("Class Number", regex_rule_gen(/(?:\s|^)([A-Z]{2,4}\s?\d{3})(?:\s|$)/ig)));
+    ppi.collection.push(PpiCheck("Class Year", regex_rule_gen(/(?:\s|^)(sophmore|senior|junior|freshman)(?:\s|$)/ig)));
+    ppi.collection.push(PpiCheck("Sexual Orientation", regex_rule_gen(/(?:\s|^)(gay|straight|bisexual)(?:\s|$)/gi)));
+    ppi.collection.push(PpiCheck("Letter Grade", regex_rule_gen(/(?:\s|^)(A[+\-]|B[+\-]?)(?:\s|$)/gi)));
 
-        var class_num_regex = /(?:\s|^)([A-Z]{2,4}\s?\d{3})(?:\s|$)/ig;
-
-        return function (value) {
-
-            var regex_match,
-                regex_matches = [],
-                match;
-
-            while (regex_match = class_num_regex.exec(value)) {
-
-                if (regex_match[1]) {
-                    regex_matches.push(regex_match[1]);
-                }
-            }
-
-            return regex_matches;
-        };
-    }())));
 
     ppi.find_ppi = function (text) {
 
