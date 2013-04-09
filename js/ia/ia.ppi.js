@@ -61,7 +61,7 @@ if ('ppi' in window.ia === false) {
 
     ppi.collection.push(PpiCheck("Year", (function () {
 
-        var year_regex = /(\d{4})/g;
+        var year_regex = /(?:\D|^)(\d{4})(?:\D|$)/g;
 
         return function (value) {
 
@@ -72,7 +72,7 @@ if ('ppi' in window.ia === false) {
             while (regex_match = year_regex.exec(value)) {
 
                 year = regex_match[0];
-                if (year.length === 4 && year > 1900 && year < 2010) {
+                if (year.length === 4 && year > 1900 && year < 2020) {
                     regex_matches.push(regex_match[1]);
                 }
             }
@@ -88,7 +88,7 @@ if ('ppi' in window.ia === false) {
 
     ppi.collection.push(PpiCheck("GPA", (function () {
 
-        var gpa_regex = /\D?(\d\.\d{1,2})\D?/g;
+        var gpa_regex = /(?:\D|^)(\d\.\d{1,2})(?:\D|$)/g;
 
         return function (value) {
 
@@ -104,6 +104,27 @@ if ('ppi' in window.ia === false) {
                 // Only accept year matches that have a non-digit before or
                 // after the year.
                 if (float_version > 0 && float_version < 5.01 && regex_match[0].length > 3) {
+                    regex_matches.push(regex_match[1]);
+                }
+            }
+
+            return regex_matches;
+        };
+    }())));
+
+    ppi.collection.push(PpiCheck("Class Number", (function () {
+
+        var class_num_regex = /(?:\s|^)([A-Z]{2,4}\s?\d{3})(?:\s|$)/ig;
+
+        return function (value) {
+
+            var regex_match,
+                regex_matches = [],
+                match;
+
+            while (regex_match = class_num_regex.exec(value)) {
+
+                if (regex_match[1]) {
                     regex_matches.push(regex_match[1]);
                 }
             }
