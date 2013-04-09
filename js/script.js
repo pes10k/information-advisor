@@ -7,6 +7,16 @@
             html = window.pes.html,
             responses = [],
 
+            ppi_per_question = {},
+            ppi_sum = function () {
+                var total = 0,
+                    key;
+                for (key in ppi_per_question) {
+                    total += ppi_per_question[key];
+                }
+                return total;
+            },
+
             // Elements used for handling the into text and initial
             // user agreement
             $survey_section = $("#survey-section"),
@@ -58,13 +68,16 @@
                 var ppi = ppi_in_current_question(),
                     ppi_count = count_ppi_in_current_question(),
                     ppi_serialized = {},
-                    rating = ppi_count ? (1000000 / Math.pow(10, ppi_count)) : false,
+                    rating,
                     body,
                     key;
 
                 for (key in ppi) {
                     ppi_serialized[key] = ppi[key].length;
                 }
+
+                ppi_per_question[form.currentQuestion().id()] = ppi_count;
+                rating = ppi_count ? (1000000 / Math.pow(10, ppi_sum())) : false;
 
                 responses.push({
                     question: form.currentQuestion().id(),
