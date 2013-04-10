@@ -5,7 +5,9 @@
     }
 
     ns.data.cities = [
-        "New York",
+        // Removing New York from consideration so we don't double
+        // count it with the State
+        // "New York",
         "Los Angeles",
         "Chicago",
         "Houston",

@@ -48,15 +48,14 @@ if ('ppi' in window.ia === false) {
                     data_escaped = data_escaped.replace(an_escape_char, '\\' + an_escape_char);
                 }
 
-                data_regexes.push(new RegExp(data_escaped, 'i'));
+                data_regexes.push(new RegExp("(?:\\s|^)" + data_escaped + '(?:\\s|$)', 'i'));
             }
 
             return function (value) {
 
                 var index,
                     regex_match,
-                    current_regex,
-                    regex_matches = [];
+                    current_regex;
 
                 for (index in data_regexes) {
 
@@ -64,11 +63,11 @@ if ('ppi' in window.ia === false) {
                     regex_match = current_regex.exec(value);
 
                     if (regex_match) {
-                        regex_matches.push(regex_match[0]);
+                        return [$.trim(regex_match[0])];
                     }
                 }
 
-                return regex_matches;
+                return [];
             };
         },
         ppi = ns.ppi,
@@ -101,6 +100,7 @@ if ('ppi' in window.ia === false) {
     ppi.collection.push(PpiCheck("Cities", data_checker_gen(data.cities)));
     ppi.collection.push(PpiCheck("States", data_checker_gen(data.states)));
     ppi.collection.push(PpiCheck("Majors and Minors", data_checker_gen(data.majors)));
+    ppi.collection.push(PpiCheck("Faculty", data_checker_gen(data.faculty)));
     ppi.collection.push(PpiCheck("Gender", data_checker_gen(['male', 'female', 'transgendered'])));
 
     ppi.collection.push(PpiCheck("GPA", (function () {
