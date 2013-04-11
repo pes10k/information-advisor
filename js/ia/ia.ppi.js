@@ -87,7 +87,7 @@ if ('ppi' in window.ia === false) {
 
             while (regex_match = year_regex.exec(value)) {
 
-                year = regex_match[0];
+                year = regex_match[1];
                 if (year.length === 4 && year > 1900 && year < 2020) {
                     regex_matches.push(regex_match[1]);
                 }
