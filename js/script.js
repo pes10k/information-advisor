@@ -20,9 +20,20 @@
 
             // Elements used for handling the into text and initial
             // user agreement
+            $question_section = $("#question-section"),
             $survey_section = $("#survey-section"),
             $intro_section = $("#intro-section"),
             $being_survey_button = $("#begin-survey"),
+
+            // Elements used for only the survey page
+            $survey_form = $survey_section.find("form"),
+            $cancel_survey_button = $survey_section.find(".btn-cancel"),
+            $submit_survey_button = $survey_section.find(".btn-submit"),
+            survey_complete = function () {
+                $survey_form.fadeOut(function () {
+                    $survey_section.find(".form-complete-message").fadeIn();
+                });
+            },
 
             // Elements used for prompting users for questions
             form = new IA.QuestionsForm(
@@ -57,7 +68,9 @@
 
                 if (form.isAtLastQuestion()) {
 
-                    window.location.href = "/survey.html";
+                    $question_section.fadeOut(function () {
+                        $survey_section.fadeIn();
+                    });
 
                 } else {
 
@@ -121,7 +134,7 @@
 
         $being_survey_button.click(function () {
             $intro_section.fadeOut(function () {
-                $survey_section.fadeIn();
+                $question_section.fadeIn();
             });
         });
 
@@ -137,6 +150,39 @@
 
         $next_button.click(function () {
             prompt_user();
+        });
+
+        // Survey Functionality
+        $cancel_survey_button.click(function () {
+            survey_complete();
+            return false;
+        });
+
+        $submit_survey_button.click(function () {
+
+            var form_values = {
+                age: $("#age").val(),
+                gender: $("#gender").val(),
+                student_status: $("#student_status").val(),
+                responses: responses
+            };
+
+            $survey_form
+                .find(":input")
+                    .attr("disabled", "disabled")
+                    .end()
+                .prepend("<div class='alert-info alert'>Submitting form values&hellip;</div>");
+
+            $.post(
+                "/survey.php",
+                form_values,
+                function (json) {
+                    survey_complete();
+                },
+                "json"
+            );
+
+            return false;
         });
     });
 

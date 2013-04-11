@@ -32,7 +32,6 @@
                     <p>All of your responses are voluntary and you can opt to cancel your participation in the survey at any time by leaving the web page.</p>
 
                     <p>If you are over the age of 18 and wish to continue please click "<strong>Begin Survey</strong>."</p>
-
                 </div>
             </div>
 
@@ -45,7 +44,7 @@
             </div>
         </section>
 
-        <section class="container" style="display: none;" id="survey-section">
+        <section class="container" style="display: none;" id="question-section">
 
             <div class="row">
                 <div class="span8 offset2">
@@ -58,31 +57,31 @@
 
                     <div class="questions-form">
                         <div data-question-sequence="1" class="well question">
-                            <label for="question_1">Question 1</label>
+                            <label for="question_1">Question 1 / 5</label>
                             <p>Please describe a negative experience you had with a teacher / professor.</p>
                             <textarea name="question_1" id="question_1" class="input-block-level"></textarea>
                         </div>
 
                         <div data-question-sequence="2" class="well question" style="display: none;">
-                            <label for="question_2">Question 2</label>
+                            <label for="question_2">Question 2 / 5</label>
                             <p>When did this negative experience occur?</p>
                             <textarea name="question_2" id="question_2" class="input-block-level"></textarea>
                         </div>
 
                         <div data-question-sequence="3" class="well question" style="display: none;">
-                            <label for="question_3">Question 3</label>
+                            <label for="question_3">Question 3 / 5</label>
                             <p>Please describe where this experience occured?</p>
                             <textarea name="question_3" id="question_3" class="input-block-level"></textarea>
                         </div>
 
                         <div data-question-sequence="4" class="well question" style="display: none;">
-                            <label for="question_4">Question 4</label>
+                            <label for="question_4">Question 4 / 5</label>
                             <p>Please describe the context within which you had this experience. What led you and the teacher / professor to be in the situation in the first place?</p>
                             <textarea name="question_4" id="question_4" class="input-block-level"></textarea>
                         </div>
 
                         <div data-question-sequence="5" class="well question" style="display: none;">
-                            <label for="question_5">Question 5</label>
+                            <label for="question_5">Question 5 / 5</label>
                             <p>Please provide a recommendation for how the problem could have been better resolved or corrected?</p>
                             <textarea name="question_5" id="question_5" class="input-block-level"></textarea>
                         </div>
@@ -95,6 +94,60 @@
                     <div class="form-actions">
                         <button class="btn btn-primary pull-right btn-next">Submit Response</button>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="survey-section" style="display: none;">
+            <div class="row">
+                <div class="span8 offset2">
+
+                    <div class="form-complete-message" style="display: none;">
+                        <p>The survey is now complete. Thank you very much for your time and input.</p>
+                    </div>
+
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <legend>Survey</legend>
+
+                            <p>Thank you for taking our initial survey.  At this point we would like to inform you that the scenario about which you just answered questions was fabricated.  The true goal of our research is to provide a deeper understanding of the sharing of potentially identifying information.  Depending on whether you were assigned to the test or control group you might have seen pop-up dialog related to the types of information you were choosing to share.  It was necessary to hide the true nature of the study to ensure that the responses you provided were genuine in regard to your concern of being identified.  The information provided in the previous section will only be utilized at an aggregate level.  No actual identifying information has been retained.</p>
+
+                            <p>If you wish to withdraw your participation in light of the true nature of the study please click "<strong>Cancel</strong>" below and your submission will not be recorded.</p>
+
+                            <p>If you wish to continue participating in the research study please answer the follow-up questions below and click "<strong>Submit</strong>".</p>
+
+                            <div class="control-group">
+                                <label class="control-label" for="age">Age</label>
+                                <div class="controls">
+                                    <input type="number" id="age" name="age" size="3">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="gender">Gender</label>
+                                <div class="controls">
+                                    <input type="text" id="gender" name="gender">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="student_status">Current UIC Student Status</label>
+                                <div class="controls">
+                                    <select id="student_status" name="student_status">
+                                        <option value="No response">Prefer not to respond</option>
+                                        <option value="Graduate">Graduate</option>
+                                        <option value="Undergraduate">Undergraduate</option>
+                                        <option value="No longer a student">No longer a student</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button class="btn btn-cancel">Cancel</button>
+                                <button class="btn btn-primary btn-submit">Submit</button>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </section>

@@ -12,3 +12,7 @@ header {
     font-size: 140%;
     text-align: center;
 }
+
+.questions-form textarea {
+    height: 10em;
+}
