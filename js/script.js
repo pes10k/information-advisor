@@ -4,6 +4,7 @@
     $(function () {
 
         var debug = IA.debug,
+            is_control_group = (Math.round(Math.random() * 10) % 2),
             html = window.pes.html,
             responses = [],
 
@@ -80,24 +81,25 @@
                 rating = ppi_count ? (1000000 / Math.pow(10, ppi_sum())) : false;
 
                 responses.push({
+                    group: is_control_group ? "control" : "test",
                     question: form.currentQuestion().id(),
                     rating: rating ? "1 in " + rating : "none",
                     ppi_counts: ppi_serialized,
                     time: Date.now()
                 });
 
+                if (debug) {
+                    debug.add_item(responses[responses.length - 1]);
+                }
+
                 // If there is identifiable PPI, then prompt the user and allow
                 // them to edit their response accordinly
-                if (rating) {
+                if (rating && !is_control_group) {
 
                     body = (html.p("There is potentially personally identifiying information in your response.") +
                         html.p("You may want to edit your response to remove potentially identifiying details to better preserve your anonymity.") +
                         html.div("We estimate that your current response makes you identifiable") +
                         html.div("1 out of " + rating + " people.", {"class": "well ident-measure"}));
-
-                    if (debug) {
-                        debug.add_item(responses[responses.length - 1]);
-                    }
 
                     $modal.body.html($(body));
                     $modal.label.text("Information");
@@ -109,6 +111,10 @@
                     answer_accepted();
                 }
             };
+
+        if (debug) {
+            debug.log(is_control_group ? "In Control Group" : "In Test Group");
+        }
 
         $modal.body = $modal.find(".modal-body");
         $modal.label = $modal.find("#modal-label");
