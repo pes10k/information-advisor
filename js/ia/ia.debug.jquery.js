@@ -10,10 +10,18 @@
                         '</div>' +
                     '</section>',
         $debug_area = $("section:last")
-            .append(debug_html)
-                .find('.debug-area');
+            .parent()
+                .append(debug_html)
+                    .find('.debug-area');
 
     IA.debug = {
+        log: function (msg) {
+            msg = $("<div class='debug-message'>" + msg + "</div>");
+            $debug_area
+                .prepend("<hr />")
+                .prepend(msg);
+            return this;
+        },
         serialize: function (item) {
 
             var key,
@@ -25,13 +33,12 @@
             }
 
             return elements.join(",");
-
         },
         add_item: function (item) {
 
             var key,
                 value,
-                html = "<hr /><dl>";
+                html = "<dl>";
 
             for (key in item) {
 
@@ -44,7 +51,7 @@
             }
 
             html += "</dl>";
-            $debug_area.prepend(html);
+            this.log(html);
         }
     };
 
