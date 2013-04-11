@@ -57,7 +57,7 @@
 
                 if (form.isAtLastQuestion()) {
 
-                    // Handle being at the end of the world
+                    window.location.href = "/survey.html";
 
                 } else {
 
