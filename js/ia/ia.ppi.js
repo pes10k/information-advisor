@@ -132,8 +132,8 @@ if ('ppi' in window.ia === false) {
     ppi.collection.push(PpiCheck("Class Number", regex_rule_gen(/(?:\s|^)([A-Z]{2,4}\s?\d{3})(?:\s|$)/ig)));
     ppi.collection.push(PpiCheck("Class Year", regex_rule_gen(/(?:\s|^)(sophmore|senior|junior|freshman)(?:\s|$)/ig)));
     ppi.collection.push(PpiCheck("Sexual Orientation", regex_rule_gen(/(?:\s|^)(gay|straight|bisexual)(?:\s|$)/gi)));
+    ppi.collection.push(PpiCheck("Season", regex_rule_gen(/(?:\s|^)(fall|autumn|spring|summer|winter)(?:\s|$)/gi)));
     ppi.collection.push(PpiCheck("Letter Grade", regex_rule_gen(/(?:\s|^)(A[+\-]|B[+\-]?)(?:\s|$)/gi)));
-
 
     ppi.find_ppi = function (text) {
 

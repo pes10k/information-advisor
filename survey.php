@@ -14,6 +14,8 @@ $record = array(
     'gender' => $array_val($_POST, 'gender'),
     'student_status' => $array_val($_POST, 'student_status'),
     'responses' => $array_val($_POST, 'responses'),
+    'tool_response' => $array_val($_POST, 'tool_response'),
+    'uic_student' => $array_val($_POST, 'uic_student'),
 );
 
 $rs = $collection->insert($record);

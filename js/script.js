@@ -129,6 +129,10 @@
             debug.log(is_control_group ? "In Control Group" : "In Test Group");
         }
 
+        if (is_control_group) {
+            $(".test-group-only").remove();
+        }
+
         $modal.body = $modal.find(".modal-body");
         $modal.label = $modal.find("#modal-label");
 
@@ -164,6 +168,8 @@
                 age: $("#age").val(),
                 gender: $("#gender").val(),
                 student_status: $("#student_status").val(),
+                tool_response: $("input[name='tool_response']:checked").val(),
+                uic_student: $("#uic_student").val(),
                 responses: responses
             };
 

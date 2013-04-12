@@ -820,7 +820,6 @@
         "Winters",
         "Woolley",
         "Xiang",
-        "",
         "Jr.",
         "Fifer",
         "Bartky",

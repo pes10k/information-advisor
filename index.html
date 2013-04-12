@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Questionnaire | Identification Advisor</title>
+        <title>Questionnaire | Teacher Experience Survey</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="span8 offset2">
                     <div class="page-header">
-                        <h1>Identification Advisor <small>An IGERT-ESP Adventure</small></h1>
+                        <h1>Teacher Experience <small>Survey</small></h1>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
 
             <div class="row">
                 <div class="span8 offset2">
-                    <p>In an effort to generate initial content for our new site we would like for you to answer the following questions:</p>
+                    <p>The below questions are an effort to generate useful examples. Please be as detailed as possible in your answers as they <em>may be used as examples in our final report</em>.</p>
                 </div>
             </div>
 
@@ -58,13 +58,13 @@
                     <div class="questions-form">
                         <div data-question-sequence="1" class="well question">
                             <label for="question_1">Question 1 / 5</label>
-                            <p>Please describe a negative experience you had with a teacher / professor.</p>
+                            <p>Please describe a negative experience you had with a teacher / professor. Why do you think this experience occured?  What contributed to it?</p>
                             <textarea name="question_1" id="question_1" class="input-block-level"></textarea>
                         </div>
 
                         <div data-question-sequence="2" class="well question" style="display: none;">
                             <label for="question_2">Question 2 / 5</label>
-                            <p>When did this negative experience occur?</p>
+                            <p>One of the goals of this research is to explore how and if the when a course is taught impacts the quality of student–faculty interaction. When did this negative experience occur?</p>
                             <textarea name="question_2" id="question_2" class="input-block-level"></textarea>
                         </div>
 
@@ -76,7 +76,7 @@
 
                         <div data-question-sequence="4" class="well question" style="display: none;">
                             <label for="question_4">Question 4 / 5</label>
-                            <p>Please describe the context within which you had this experience. What led you and the teacher / professor to be in the situation in the first place?</p>
+                            <p>An important goal of our research is to understand the context in which this interaction occured.  Please provide information about your background and educational interests.</p>
                             <textarea name="question_4" id="question_4" class="input-block-level"></textarea>
                         </div>
 
@@ -131,15 +131,65 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="student_status">Current UIC Student Status</label>
+                                <label class="control-label" for="student_status">Current Student Status</label>
                                 <div class="controls">
                                     <select id="student_status" name="student_status">
                                         <option value="No response">Prefer not to respond</option>
+                                        <option value="Not a Student">Not a Student</option>
                                         <option value="Graduate">Graduate</option>
                                         <option value="Undergraduate">Undergraduate</option>
                                         <option value="No longer a student">No longer a student</option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="uic_student">Are you currently a UIC student?</label>
+                                <div class="controls">
+                                    <select id="uic_student" name="uic_student">
+                                        <option value="No response">Prefer not to respond</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group test-group-only">
+                                <label>To what extent did the popup dialog influence the type and amount of information you shared?</label>
+                                <table class="table-hover table">
+                                    <thead>
+                                        <tr>
+                                            <th>Not At All</th>
+                                            <th>A Little</th>
+                                            <th>Somewhat</th>
+                                            <th>Very Much</th>
+                                            <th>Extremely</th>
+                                            <th>N/A</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input type="radio" name="tool_response" value="1">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tool_response" value="2">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tool_response" value="3">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tool_response" value="4">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tool_response" value="5">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="tool_response" value="N/A">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <div class="form-actions">
@@ -151,6 +201,14 @@
                 </div>
             </div>
         </section>
+
+        <footer class="container">
+            <div class="row">
+                <div class="span8 offset2">
+                    <p>For questions, concerns or more information, please contact <a href="mailto:bkuo3@uic.edu">Ben Kuo</a> or <a href="mailto:psnyde2@uic.edu">Peter Snyder</a>.
+                </div>
+            </div>
+        </footer>
 
         <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
             <div class="modal-header">
@@ -172,7 +230,7 @@
         <script src="js/ia/data/ia.data.states.js"></script>
         <script src="js/ia/data/ia.data.faculty.js"></script>
         <script src="js/ia/ia.ppi.js"></script>
-        <script src="js/ia/ia.debug.jquery.js"></script>
+        <!-- <script src="js/ia/ia.debug.jquery.js"></script> -->
         <script src="js/ia/ia.ppicollection.js"></script>
         <script src="js/ia/ia.question.jquery.js"></script>
         <script src="js/ia/ia.questionsform.jquery.js"></script>
