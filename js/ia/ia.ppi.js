@@ -101,6 +101,7 @@ if ('ppi' in window.ia === false) {
     ppi.collection.push(PpiCheck("States", data_checker_gen(data.states)));
     ppi.collection.push(PpiCheck("Majors and Minors", data_checker_gen(data.majors)));
     ppi.collection.push(PpiCheck("Faculty", data_checker_gen(data.faculty)));
+    ppi.collection.push(PpiCheck("Building (Full)", data_checker_gen(data.buildings_long)));
     ppi.collection.push(PpiCheck("Gender", data_checker_gen(['male', 'female', 'transgendered'])));
 
     ppi.collection.push(PpiCheck("GPA", (function () {
@@ -129,11 +130,37 @@ if ('ppi' in window.ia === false) {
         };
     }())));
 
-    ppi.collection.push(PpiCheck("Class Number", regex_rule_gen(/(?:\s|^)([A-Z]{2,4}\s?\d{3})(?:\s|$)/ig)));
-    ppi.collection.push(PpiCheck("Class Year", regex_rule_gen(/(?:\s|^)(sophmore|senior|junior|freshman)(?:\s|$)/ig)));
-    ppi.collection.push(PpiCheck("Sexual Orientation", regex_rule_gen(/(?:\s|^)(gay|straight|bisexual)(?:\s|$)/gi)));
-    ppi.collection.push(PpiCheck("Season", regex_rule_gen(/(?:\s|^)(fall|autumn|spring|summer|winter)(?:\s|$)/gi)));
-    ppi.collection.push(PpiCheck("Letter Grade", regex_rule_gen(/(?:\s|^)(A[+\-]|B[+\-]?)(?:\s|$)/gi)));
+    ppi.collection.push(PpiCheck("Class Number", regex_rule_gen(/(?:\s|^)([A-Z]{2,4}\s?\d{3})(?:\s|$|\W)/ig)));
+    ppi.collection.push(PpiCheck("Class Year", regex_rule_gen(/(?:\s|^)(sophmore|senior|junior|freshman)(?:\s|$|\W)/ig)));
+    ppi.collection.push(PpiCheck("Sexual Orientation", regex_rule_gen(/(?:\s|^)(gay|straight|bisexual)(?:\s|$|\W)/gi)));
+    ppi.collection.push(PpiCheck("Season", regex_rule_gen(/(?:\s|^)(fall|autumn|spring|summer|winter)(?:\s|$|\W)/gi)));
+    ppi.collection.push(PpiCheck("Letter Grade", regex_rule_gen(/(?:\s|^)(A[+\-]|B[+\-]?)(?:\s|$|\W)/gi)));
+    ppi.collection.push(PpiCheck("Building (Abbr)", (function () {
+
+        var abbr_regexes = [],
+            key;
+
+        for (key in data.buildings_short) {
+            abbr_regexes.push(new RegExp("(?:\\s|^)(" + data.buildings_short[key] + ")(?:\\s|$|\\d)", "i"));
+        }
+
+        return function (value) {
+
+            var regex_key,
+                regex_match;
+
+            for (regex_key in abbr_regexes) {
+
+                regex_match = abbr_regexes[regex_key].exec(value);
+
+                if (regex_match && regex_match[1]) {
+                    return [regex_match[1]];
+                }
+            }
+
+            return [];
+        };
+    }())));
 
     ppi.find_ppi = function (text) {
 
@@ -148,7 +175,17 @@ if ('ppi' in window.ia === false) {
             found_ppi = ppi_check.check(text);
 
             if (found_ppi.length > 0) {
+
+                // Class numbers and building abbreviations with room numbers
+                // look very similar, so to avoid double counting the same
+                // item, kick out the "Class Number" match if we get
+                // a Building abbr match
+
                 matches[ppi_check.title] = found_ppi;
+
+                if (ppi_check.title === "Building (Abbr)" && "Class Number" in matches) {
+                    delete ppi_check["Class Number"];
+                }
             }
         }
 

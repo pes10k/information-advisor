@@ -199,7 +199,7 @@
         "McKinney",
         "Sterling Heights",
         "Bellevue",
-        "Coral Springs",
+        "Coral Springs"
     ];
 
 }(window.ia));
