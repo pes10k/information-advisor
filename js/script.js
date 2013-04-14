@@ -74,7 +74,10 @@
 
                 } else {
 
-                    form.nextQuestion();
+                    $next_button.attr("disabled", "disabled");
+                    form.nextQuestion(function () {
+                        $next_button.removeAttr("disabled");
+                    });
                 }
             },
             prompt_user = function () {

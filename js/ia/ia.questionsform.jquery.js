@@ -16,7 +16,7 @@
             return current_question;
         };
 
-        this.nextQuestion = function () {
+        this.nextQuestion = function (callback) {
 
             if (question_index >= num_questions - 1) {
 
@@ -26,7 +26,11 @@
 
                 current_question.fadeOut(function () {
                     current_question = questions[++question_index];
-                    current_question.fadeIn();
+                    if (callback) {
+                        current_question.fadeIn(callback);
+                    } else {
+                        current_question.fadeIn(callback);
+                    }
                 });
             }
         };

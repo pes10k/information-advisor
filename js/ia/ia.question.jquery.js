@@ -13,12 +13,20 @@
         };
 
         this.fadeIn = function (callback) {
-            $elm.fadeIn(callback);
+            $elm
+                .find(":input")
+                    .removeAttr("disabled")
+                    .end()
+                .fadeIn(callback);
             return this;
         };
 
         this.fadeOut = function (callback) {
-            $elm.fadeOut(callback);
+            $elm
+                .find(":input")
+                    .attr("disabled", "disabled")
+                    .end()
+                .fadeOut(callback);
             return this;
         };
 
