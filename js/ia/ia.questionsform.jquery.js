@@ -8,6 +8,10 @@
             num_questions = questions.length,
             that = this;
 
+        $.each(questions, function (index, value) {
+            value.setNumQuestionsInSet(num_questions);
+        });
+
         this.isAtLastQuestion = function () {
             return question_index === num_questions - 1;
         };

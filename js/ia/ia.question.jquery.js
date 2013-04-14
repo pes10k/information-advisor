@@ -3,10 +3,11 @@
 
     IA.Question = function ($elm) {
 
-        var $label = $elm.find("label"),
-            $textarea = $elm.find("textarea"),
+        var $textarea = $elm.find("textarea"),
             $sequence_num = $elm.attr("data-question-sequence"),
-            id = $elm.attr("data-question-sequence");
+            id = $elm.attr("data-question-sequence"),
+            $label = $elm.prepend("<label for='question_" + id + "''>Question " + id + " / <span class='question-count'> </span></label>"),
+            $num_questions = $label.find('.question-count');
 
         this.id = function () {
             return id;
@@ -32,6 +33,10 @@
 
         this.val = function () {
             return $textarea.val();
+        };
+
+        this.setNumQuestionsInSet = function (num) {
+            $num_questions.text(num);
         };
     };
 
