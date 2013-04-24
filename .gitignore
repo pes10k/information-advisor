@@ -1,2 +1,2 @@
-tools/report.csv
+tools/*.csv
 .DS_Store
