@@ -128,6 +128,12 @@
                 }
             };
 
+        if (window.location.href.indexOf("?test") !== -1) {
+            is_control_group = false;
+        } else if (window.location.href.indexOf("?control") !== -1) {
+            is_control_group = true;
+        }
+
         if (debug) {
             debug.log(is_control_group ? "In Control Group" : "In Test Group");
         }
